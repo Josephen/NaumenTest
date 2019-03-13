@@ -1,0 +1,21 @@
+<div class="article-list pt-2" *ngIf="ArticleList[1].length > 0; else notFound"> 
+  <div class="ml-2"> 
+  <h4>По запросу <small class="text-muted query">"{{ ArticleList[0] }}"</small> 
+  найдены статьи:</h4> 
+  </div> 
+  <div class="article-list__block" *ngFor="let article of ArticleList[1]; let i = index"> 
+  <div *ngFor="let link of ArticleList[3]; let k = index" [hidden]="i != k"> 
+  <a class="article-list__link" [attr.href]="link">{{ article }}</a> 
+  </div> 
+  <div class="article-list__description mt-2 mb-2" *ngFor="let description of ArticleList[2]; let j = index" [hidden]="i != j"> 
+  <div *ngIf="description !== ''; else missingSnippet">{{ description }}</div> 
+  <ng-template #missingSnippet>Краткого описания нет</ng-template> 
+  </div> 
+  </div> 
+  </div> 
+  
+  <ng-template #notFound> 
+  <div class="alert alert-danger" role="alert"> 
+  По вашему запросу ничего не найдено 
+  </div> 
+  </ng-template>

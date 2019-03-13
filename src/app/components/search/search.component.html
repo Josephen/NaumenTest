@@ -1,0 +1,14 @@
+<div class="search-form mt-2 input-group mb-2">
+  <input appShowSuggestions type="search" class="form-control search-form__input"
+         placeholder="Введите слово" maxlength="60"
+         [(ngModel)]="searchQuery"
+         (keyup)="showArticlesKeyup($event)" [formControl]="typeahead"
+         (input)="suggest()" (focus)="toggleSuggestions()">
+  <div class="input-  group-append">
+    <button class="btn btn-outline-secondary search-form__btn" type="submit"
+      (click)="showArticles()" [disabled]="searchQuery.trim() === ''">Найти</button>
+  </div>
+</div>
+
+<app-article-list *ngIf="articles.length > 0" [ArticleList]="articles">
+</app-article-list>
